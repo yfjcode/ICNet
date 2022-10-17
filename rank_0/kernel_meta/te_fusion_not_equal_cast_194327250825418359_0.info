@@ -1,0 +1,308 @@
+{
+    "job_content": {
+        "SocInfo": {
+            "autoTilingMode": "NO_TUNE",
+            "coreNum": "",
+            "coreType": "AiCore",
+            "deviceId": "0",
+            "l1Fusion": "false",
+            "l2Fusion": "false",
+            "l2Mode": "2",
+            "mdl_bank_path": "",
+            "offlineTune": false,
+            "op_bank_path": "",
+            "op_bank_update": false,
+            "op_debug_dir": "./rank_0/",
+            "op_debug_level": "3",
+            "op_impl_mode": "",
+            "op_impl_mode_list": [],
+            "socVersion": "Ascend910A",
+            "vector_fp_ceiling": ""
+        },
+        "full_name": "Default/network-TrainOneStepCell/network-ICNetdc/loss-ICNetLoss/base_loss-SoftmaxCrossEntropyLoss/FusionOp_NotEqual_Cast-op6669",
+        "fusion_op_name": "te_fusion_not_equal_cast_194327250825418359_0",
+        "graph_name": "",
+        "l1_size": -1,
+        "op_list": [
+            {
+                "name": "Default/network-TrainOneStepCell/network-ICNetdc/loss-ICNetLoss/base_loss-SoftmaxCrossEntropyLoss/Reshape-op6681",
+                "output_desc": [
+                    {
+                        "L1_addr_offset": 0,
+                        "L1_fusion_type": -1,
+                        "L1_workspace_size": -1,
+                        "addr_type": 0,
+                        "data_type": "int32",
+                        "dtype": "int32",
+                        "format": "ND",
+                        "name": "Default/network-TrainOneStepCell/network-ICNetdc/loss-ICNetLoss/base_loss-SoftmaxCrossEntropyLoss/Reshape-op6681",
+                        "ori_format": "NCHW",
+                        "ori_shape": [
+                            57600
+                        ],
+                        "output_index": 0,
+                        "shape": [
+                            57600
+                        ],
+                        "slice_offset": [],
+                        "split_index": 0,
+                        "total_shape": [],
+                        "valid_shape": []
+                    }
+                ],
+                "type": "Data"
+            },
+            {
+                "name": "Default/data-2",
+                "output_desc": [
+                    {
+                        "L1_addr_offset": 0,
+                        "L1_fusion_type": -1,
+                        "L1_workspace_size": -1,
+                        "addr_type": 0,
+                        "data_type": "int32",
+                        "dtype": "int32",
+                        "format": "ND",
+                        "name": "Default/data-2",
+                        "ori_format": "NCHW",
+                        "ori_shape": [
+                            1
+                        ],
+                        "output_index": 0,
+                        "shape": [
+                            1
+                        ],
+                        "slice_offset": [],
+                        "split_index": 0,
+                        "total_shape": [],
+                        "valid_shape": []
+                    }
+                ],
+                "type": "Data"
+            },
+            {
+                "dynamic_compile_static": false,
+                "func_name": "not_equal",
+                "input_desc": [
+                    {
+                        "L1_addr_offset": 0,
+                        "L1_fusion_type": -1,
+                        "L1_workspace_size": -1,
+                        "addr_type": 0,
+                        "data_type": "int32",
+                        "dtype": "int32",
+                        "format": "ND",
+                        "name": "Default/network-TrainOneStepCell/network-ICNetdc/loss-ICNetLoss/base_loss-SoftmaxCrossEntropyLoss/Reshape-op6681",
+                        "ori_format": "NCHW",
+                        "ori_shape": [
+                            57600
+                        ],
+                        "output_index": 0,
+                        "shape": [
+                            57600
+                        ],
+                        "slice_offset": [],
+                        "split_index": 0,
+                        "total_shape": [],
+                        "valid_shape": []
+                    },
+                    {
+                        "L1_addr_offset": 0,
+                        "L1_fusion_type": -1,
+                        "L1_workspace_size": -1,
+                        "addr_type": 0,
+                        "data_type": "int32",
+                        "dtype": "int32",
+                        "format": "ND",
+                        "name": "Default/data-2",
+                        "ori_format": "NCHW",
+                        "ori_shape": [
+                            1
+                        ],
+                        "output_index": 0,
+                        "shape": [
+                            1
+                        ],
+                        "slice_offset": [],
+                        "split_index": 0,
+                        "total_shape": [],
+                        "valid_shape": []
+                    }
+                ],
+                "int64mode": false,
+                "is_dynamic_impl": false,
+                "module_name": "impl.not_equal",
+                "name": "Default/network-TrainOneStepCell/network-ICNetdc/loss-ICNetLoss/base_loss-SoftmaxCrossEntropyLoss/NotEqual-op506",
+                "op_name": "te_fusion_not_equal_cast_194327250825418359_0",
+                "ori_name": [
+                    "Default/network-TrainOneStepCell/network-ICNetdc/loss-ICNetLoss/base_loss-SoftmaxCrossEntropyLoss/FusionOp_NotEqual_Cast-op6669"
+                ],
+                "output_data_desc": [
+                    {
+                        "L1_addr_offset": 0,
+                        "L1_fusion_type": -1,
+                        "L1_workspace_size": -1,
+                        "addr_type": 0,
+                        "data_type": "int8",
+                        "dtype": "int8",
+                        "format": "ND",
+                        "ori_format": "NCHW",
+                        "ori_shape": [
+                            57600
+                        ],
+                        "param_type": "required",
+                        "range": [
+                            [
+                                57600,
+                                57600
+                            ]
+                        ],
+                        "shape": [
+                            57600
+                        ],
+                        "slice_offset": [],
+                        "split_index": 0,
+                        "total_shape": [],
+                        "valid_shape": []
+                    }
+                ],
+                "output_desc": [
+                    {
+                        "L1_addr_offset": 0,
+                        "L1_fusion_type": -1,
+                        "L1_workspace_size": -1,
+                        "addr_type": 0,
+                        "data_type": "int8",
+                        "dtype": "int8",
+                        "format": "ND",
+                        "name": "Default/network-TrainOneStepCell/network-ICNetdc/loss-ICNetLoss/base_loss-SoftmaxCrossEntropyLoss/NotEqual-op506",
+                        "ori_format": "NCHW",
+                        "ori_shape": [
+                            57600
+                        ],
+                        "output_index": 0,
+                        "shape": [
+                            57600
+                        ],
+                        "slice_offset": [],
+                        "split_index": 0,
+                        "total_shape": [],
+                        "valid_shape": []
+                    }
+                ],
+                "pattern": "ElemWise",
+                "py_module_path": "/usr/local/Ascend/opp/op_impl/built-in/ai_core/tbe",
+                "type": "NotEqual",
+                "unknown_shape": false
+            },
+            {
+                "attr_desc": [
+                    0
+                ],
+                "attrs": [
+                    {
+                        "dtype": "int32",
+                        "name": "dst_type",
+                        "valid": true,
+                        "value": 0
+                    }
+                ],
+                "dynamic_compile_static": false,
+                "func_name": "cast",
+                "input_desc": [
+                    {
+                        "L1_addr_offset": 0,
+                        "L1_fusion_type": -1,
+                        "L1_workspace_size": -1,
+                        "addr_type": 0,
+                        "data_type": "int8",
+                        "dtype": "int8",
+                        "format": "ND",
+                        "name": "Default/network-TrainOneStepCell/network-ICNetdc/loss-ICNetLoss/base_loss-SoftmaxCrossEntropyLoss/NotEqual-op506",
+                        "ori_format": "NCHW",
+                        "ori_shape": [
+                            57600
+                        ],
+                        "output_index": 0,
+                        "shape": [
+                            57600
+                        ],
+                        "slice_offset": [],
+                        "split_index": 0,
+                        "total_shape": [],
+                        "valid_shape": []
+                    }
+                ],
+                "int64mode": false,
+                "is_dynamic_impl": false,
+                "module_name": "impl.cast",
+                "name": "Default/network-TrainOneStepCell/network-ICNetdc/loss-ICNetLoss/base_loss-SoftmaxCrossEntropyLoss/Cast-op2871",
+                "op_name": "te_fusion_not_equal_cast_194327250825418359_0",
+                "ori_name": [
+                    "Default/network-TrainOneStepCell/network-ICNetdc/loss-ICNetLoss/base_loss-SoftmaxCrossEntropyLoss/FusionOp_NotEqual_Cast-op6669"
+                ],
+                "output_data_desc": [
+                    {
+                        "L1_addr_offset": 0,
+                        "L1_fusion_type": -1,
+                        "L1_workspace_size": -1,
+                        "addr_type": 0,
+                        "data_type": "float32",
+                        "dtype": "float32",
+                        "format": "ND",
+                        "ori_format": "NCHW",
+                        "ori_shape": [
+                            57600
+                        ],
+                        "param_type": "required",
+                        "range": [
+                            [
+                                57600,
+                                57600
+                            ]
+                        ],
+                        "shape": [
+                            57600
+                        ],
+                        "slice_offset": [],
+                        "split_index": 0,
+                        "total_shape": [],
+                        "valid_shape": []
+                    }
+                ],
+                "output_desc": [
+                    {
+                        "L1_addr_offset": 0,
+                        "L1_fusion_type": -1,
+                        "L1_workspace_size": -1,
+                        "addr_type": 0,
+                        "data_type": "float32",
+                        "dtype": "float32",
+                        "format": "ND",
+                        "name": "Default/network-TrainOneStepCell/network-ICNetdc/loss-ICNetLoss/base_loss-SoftmaxCrossEntropyLoss/Cast-op2871",
+                        "ori_format": "NCHW",
+                        "ori_shape": [
+                            57600
+                        ],
+                        "output_index": 0,
+                        "shape": [
+                            57600
+                        ],
+                        "slice_offset": [],
+                        "split_index": 0,
+                        "total_shape": [],
+                        "valid_shape": []
+                    }
+                ],
+                "pattern": "ElemWise",
+                "py_module_path": "/usr/local/Ascend/opp/op_impl/built-in/ai_core/tbe",
+                "type": "Cast",
+                "unknown_shape": false
+            }
+        ],
+        "scope_id": 84
+    },
+    "job_id": 26351,
+    "job_type": "FusionOpCompile",
+    "source_id": 0
+}

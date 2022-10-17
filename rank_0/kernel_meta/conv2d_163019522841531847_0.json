@@ -1,0 +1,15 @@
+{
+    "KBHit":false,
+    "binFileName":"conv2d_163019522841531847_0",
+    "binFileSuffix":".o",
+    "blockDim":32,
+    "kernelName":"conv2d_163019522841531847_0__kernel0",
+    "magic":"RT_DEV_BINARY_MAGIC_ELF",
+    "opParaSize":0,
+    "parameters":[
+        0,
+        0,
+        0
+    ],
+    "sha256":"065692f2e8846d6734690e7f9cd7c18e3a5321ac68f3b86ace96ea3dc5735c8f"
+}

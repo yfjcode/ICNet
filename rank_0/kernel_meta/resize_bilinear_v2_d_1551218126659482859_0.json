@@ -1,0 +1,13 @@
+{
+    "binFileName":"resize_bilinear_v2_d_1551218126659482859_0",
+    "binFileSuffix":".o",
+    "blockDim":31,
+    "kernelName":"resize_bilinear_v2_d_1551218126659482859_0__kernel0",
+    "magic":"RT_DEV_BINARY_MAGIC_ELF",
+    "opParaSize":0,
+    "parameters":[
+        0,
+        0
+    ],
+    "sha256":"55ee0c4f7e37086674b7165e4737147a730859b6e26c3b18b59192f0e8292ccb"
+}

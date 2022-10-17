@@ -1,0 +1,15 @@
+{
+    "binFileName":"avg_pool_grad_d_270867543778227584_0",
+    "binFileSuffix":".o",
+    "blockDim":32,
+    "kernelName":"avg_pool_grad_d_270867543778227584_0__kernel0",
+    "magic":"RT_DEV_BINARY_MAGIC_ELF",
+    "opParaSize":0,
+    "parameters":[
+        0,
+        0,
+        0,
+        0
+    ],
+    "sha256":"dbcade8bfa199b66cfd588f12079232ccc45195eb10d80a1a2940cacb6800878"
+}

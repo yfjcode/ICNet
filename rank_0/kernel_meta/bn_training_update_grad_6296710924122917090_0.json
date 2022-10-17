@@ -1,0 +1,18 @@
+{
+    "KBHit":false,
+    "binFileName":"bn_training_update_grad_6296710924122917090_0",
+    "binFileSuffix":".o",
+    "blockDim":16,
+    "kernelName":"bn_training_update_grad_6296710924122917090_0__kernel0",
+    "magic":"RT_DEV_BINARY_MAGIC_ELF",
+    "opParaSize":0,
+    "parameters":[
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+    ],
+    "sha256":"b08b472f1306930dd5de6524f30e2eccfc662f85ba27f9e91cc7950974446187"
+}

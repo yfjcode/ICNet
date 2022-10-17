@@ -1,0 +1,26 @@
+{
+    "KBHit":false,
+    "binFileName":"te_fusion_bn_training_update_add_relu_v2_10489884835440208651_0",
+    "binFileSuffix":".o",
+    "blockDim":32,
+    "kernelName":"te_fusion_bn_training_update_add_relu_v2_10489884835440208651_0__kernel0",
+    "magic":"RT_DEV_BINARY_MAGIC_ELF",
+    "opParaSize":0,
+    "parameters":[
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+    ],
+    "sha256":"9fd83f3f2181fb7382f4d7f4e6cf06bc39ce982102009fc322c0bfde8e762e3d"
+}

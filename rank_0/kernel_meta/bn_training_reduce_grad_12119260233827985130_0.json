@@ -1,0 +1,19 @@
+{
+    "binFileName":"bn_training_reduce_grad_12119260233827985130_0",
+    "binFileSuffix":".o",
+    "blockDim":32,
+    "kernelName":"bn_training_reduce_grad_12119260233827985130_0__kernel0",
+    "magic":"RT_DEV_BINARY_MAGIC_ELF",
+    "opParaSize":0,
+    "parameters":[
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+    ],
+    "sha256":"25c50dd2c31c6a4059091cd5e9da50bd60df35cff5c0b25a66b61362662243c0"
+}

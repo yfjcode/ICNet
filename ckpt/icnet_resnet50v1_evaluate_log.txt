@@ -1,0 +1,2 @@
+2022-10-17 00:51:18,858 semantic_segmentation INFO: Start validation, Total sample: 1
+2022-10-17 00:51:18,858 semantic_segmentation INFO: Start validation, Total sample: 1

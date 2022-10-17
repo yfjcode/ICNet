@@ -1,0 +1,533 @@
+{
+    "job_content": {
+        "SocInfo": {
+            "autoTilingMode": "NO_TUNE",
+            "coreNum": "",
+            "coreType": "AiCore",
+            "deviceId": "0",
+            "l1Fusion": "false",
+            "l2Fusion": "false",
+            "l2Mode": "2",
+            "mdl_bank_path": "",
+            "offlineTune": false,
+            "op_bank_path": "",
+            "op_bank_update": false,
+            "op_debug_dir": "./rank_0/",
+            "op_debug_level": "3",
+            "op_impl_mode": "",
+            "op_impl_mode_list": [],
+            "socVersion": "Ascend910A",
+            "vector_fp_ceiling": ""
+        },
+        "full_name": "Default/backbone-SegBaseModel/pretrained-Resnet50v1b/layer4-SequentialCell/0-BottleneckV1b/conv1-Conv2dBnAct/conv-Conv2d/FusionOp_Add_ReLU_Cast-op1701",
+        "fusion_op_name": "te_fusion_add_relu_cast_10022567901278744074_0",
+        "graph_name": "",
+        "l1_size": -1,
+        "op_list": [
+            {
+                "name": "Default/backbone-SegBaseModel/pretrained-Resnet50v1b/layer3-SequentialCell/0-BottleneckV1b/conv3-Conv2dBnAct/batchnorm-BatchNorm2d/BNInfer-op751",
+                "output_desc": [
+                    {
+                        "L1_addr_offset": 0,
+                        "L1_fusion_type": -1,
+                        "L1_workspace_size": -1,
+                        "addr_type": 0,
+                        "data_type": "float32",
+                        "dtype": "float32",
+                        "format": "NC1HWC0",
+                        "name": "Default/backbone-SegBaseModel/pretrained-Resnet50v1b/layer3-SequentialCell/0-BottleneckV1b/conv3-Conv2dBnAct/batchnorm-BatchNorm2d/BNInfer-op751",
+                        "ori_format": "NCHW",
+                        "ori_shape": [
+                            1,
+                            1024,
+                            64,
+                            128
+                        ],
+                        "output_index": 0,
+                        "shape": [
+                            1,
+                            64,
+                            64,
+                            128,
+                            16
+                        ],
+                        "slice_offset": [],
+                        "split_index": 0,
+                        "total_shape": [],
+                        "valid_shape": []
+                    }
+                ],
+                "type": "Data"
+            },
+            {
+                "name": "Default/backbone-SegBaseModel/pretrained-Resnet50v1b/layer3-SequentialCell/4-BottleneckV1b/relu-ReLU/ReLU-op375",
+                "output_desc": [
+                    {
+                        "L1_addr_offset": 0,
+                        "L1_fusion_type": -1,
+                        "L1_workspace_size": -1,
+                        "addr_type": 0,
+                        "data_type": "float32",
+                        "dtype": "float32",
+                        "format": "NC1HWC0",
+                        "name": "Default/backbone-SegBaseModel/pretrained-Resnet50v1b/layer3-SequentialCell/4-BottleneckV1b/relu-ReLU/ReLU-op375",
+                        "ori_format": "NCHW",
+                        "ori_shape": [
+                            1,
+                            1024,
+                            64,
+                            128
+                        ],
+                        "output_index": 0,
+                        "shape": [
+                            1,
+                            64,
+                            64,
+                            128,
+                            16
+                        ],
+                        "slice_offset": [],
+                        "split_index": 0,
+                        "total_shape": [],
+                        "valid_shape": []
+                    }
+                ],
+                "type": "Data"
+            },
+            {
+                "dynamic_compile_static": false,
+                "func_name": "add",
+                "input_desc": [
+                    {
+                        "L1_addr_offset": 0,
+                        "L1_fusion_type": -1,
+                        "L1_workspace_size": -1,
+                        "addr_type": 0,
+                        "data_type": "float32",
+                        "dtype": "float32",
+                        "format": "NC1HWC0",
+                        "name": "Default/backbone-SegBaseModel/pretrained-Resnet50v1b/layer3-SequentialCell/0-BottleneckV1b/conv3-Conv2dBnAct/batchnorm-BatchNorm2d/BNInfer-op751",
+                        "ori_format": "NCHW",
+                        "ori_shape": [
+                            1,
+                            1024,
+                            64,
+                            128
+                        ],
+                        "output_index": 0,
+                        "shape": [
+                            1,
+                            64,
+                            64,
+                            128,
+                            16
+                        ],
+                        "slice_offset": [],
+                        "split_index": 0,
+                        "total_shape": [],
+                        "valid_shape": []
+                    },
+                    {
+                        "L1_addr_offset": 0,
+                        "L1_fusion_type": -1,
+                        "L1_workspace_size": -1,
+                        "addr_type": 0,
+                        "data_type": "float32",
+                        "dtype": "float32",
+                        "format": "NC1HWC0",
+                        "name": "Default/backbone-SegBaseModel/pretrained-Resnet50v1b/layer3-SequentialCell/4-BottleneckV1b/relu-ReLU/ReLU-op375",
+                        "ori_format": "NCHW",
+                        "ori_shape": [
+                            1,
+                            1024,
+                            64,
+                            128
+                        ],
+                        "output_index": 0,
+                        "shape": [
+                            1,
+                            64,
+                            64,
+                            128,
+                            16
+                        ],
+                        "slice_offset": [],
+                        "split_index": 0,
+                        "total_shape": [],
+                        "valid_shape": []
+                    }
+                ],
+                "int64mode": false,
+                "is_dynamic_impl": false,
+                "module_name": "impl.add",
+                "name": "Default/backbone-SegBaseModel/pretrained-Resnet50v1b/layer3-SequentialCell/5-BottleneckV1b/Add-op376",
+                "op_name": "te_fusion_add_relu_cast_10022567901278744074_0",
+                "ori_name": [
+                    "Default/backbone-SegBaseModel/pretrained-Resnet50v1b/layer4-SequentialCell/0-BottleneckV1b/conv1-Conv2dBnAct/conv-Conv2d/FusionOp_Add_ReLU_Cast-op1701"
+                ],
+                "output_data_desc": [
+                    {
+                        "L1_addr_offset": 0,
+                        "L1_fusion_type": -1,
+                        "L1_workspace_size": -1,
+                        "addr_type": 0,
+                        "data_type": "float32",
+                        "dtype": "float32",
+                        "format": "NC1HWC0",
+                        "ori_format": "NCHW",
+                        "ori_shape": [
+                            1,
+                            1024,
+                            64,
+                            128
+                        ],
+                        "param_type": "required",
+                        "range": [
+                            [
+                                1,
+                                1
+                            ],
+                            [
+                                64,
+                                64
+                            ],
+                            [
+                                64,
+                                64
+                            ],
+                            [
+                                128,
+                                128
+                            ],
+                            [
+                                16,
+                                16
+                            ]
+                        ],
+                        "shape": [
+                            1,
+                            64,
+                            64,
+                            128,
+                            16
+                        ],
+                        "slice_offset": [],
+                        "split_index": 0,
+                        "total_shape": [],
+                        "valid_shape": []
+                    }
+                ],
+                "output_desc": [
+                    {
+                        "L1_addr_offset": 0,
+                        "L1_fusion_type": -1,
+                        "L1_workspace_size": -1,
+                        "addr_type": 0,
+                        "data_type": "float32",
+                        "dtype": "float32",
+                        "format": "NC1HWC0",
+                        "name": "Default/backbone-SegBaseModel/pretrained-Resnet50v1b/layer3-SequentialCell/5-BottleneckV1b/Add-op376",
+                        "ori_format": "NCHW",
+                        "ori_shape": [
+                            1,
+                            1024,
+                            64,
+                            128
+                        ],
+                        "output_index": 0,
+                        "shape": [
+                            1,
+                            64,
+                            64,
+                            128,
+                            16
+                        ],
+                        "slice_offset": [],
+                        "split_index": 0,
+                        "total_shape": [],
+                        "valid_shape": []
+                    }
+                ],
+                "pattern": "ElemWise",
+                "py_module_path": "/usr/local/Ascend/opp/op_impl/built-in/ai_core/tbe",
+                "type": "Add",
+                "unknown_shape": false
+            },
+            {
+                "dynamic_compile_static": false,
+                "func_name": "relu",
+                "input_desc": [
+                    {
+                        "L1_addr_offset": 0,
+                        "L1_fusion_type": -1,
+                        "L1_workspace_size": -1,
+                        "addr_type": 0,
+                        "data_type": "float32",
+                        "dtype": "float32",
+                        "format": "NC1HWC0",
+                        "name": "Default/backbone-SegBaseModel/pretrained-Resnet50v1b/layer3-SequentialCell/5-BottleneckV1b/Add-op376",
+                        "ori_format": "NCHW",
+                        "ori_shape": [
+                            1,
+                            1024,
+                            64,
+                            128
+                        ],
+                        "output_index": 0,
+                        "shape": [
+                            1,
+                            64,
+                            64,
+                            128,
+                            16
+                        ],
+                        "slice_offset": [],
+                        "split_index": 0,
+                        "total_shape": [],
+                        "valid_shape": []
+                    }
+                ],
+                "int64mode": false,
+                "is_dynamic_impl": false,
+                "module_name": "impl.relu",
+                "name": "Default/backbone-SegBaseModel/pretrained-Resnet50v1b/layer3-SequentialCell/5-BottleneckV1b/relu-ReLU/ReLU-op403",
+                "op_name": "te_fusion_add_relu_cast_10022567901278744074_0",
+                "ori_name": [
+                    "Default/backbone-SegBaseModel/pretrained-Resnet50v1b/layer4-SequentialCell/0-BottleneckV1b/conv1-Conv2dBnAct/conv-Conv2d/FusionOp_Add_ReLU_Cast-op1701"
+                ],
+                "output_data_desc": [
+                    {
+                        "L1_addr_offset": 0,
+                        "L1_fusion_type": -1,
+                        "L1_workspace_size": -1,
+                        "addr_type": 0,
+                        "data_type": "float32",
+                        "dtype": "float32",
+                        "format": "NC1HWC0",
+                        "ori_format": "NCHW",
+                        "ori_shape": [
+                            1,
+                            1024,
+                            64,
+                            128
+                        ],
+                        "param_type": "required",
+                        "range": [
+                            [
+                                1,
+                                1
+                            ],
+                            [
+                                64,
+                                64
+                            ],
+                            [
+                                64,
+                                64
+                            ],
+                            [
+                                128,
+                                128
+                            ],
+                            [
+                                16,
+                                16
+                            ]
+                        ],
+                        "shape": [
+                            1,
+                            64,
+                            64,
+                            128,
+                            16
+                        ],
+                        "slice_offset": [],
+                        "split_index": 0,
+                        "total_shape": [],
+                        "valid_shape": []
+                    }
+                ],
+                "output_desc": [
+                    {
+                        "L1_addr_offset": 0,
+                        "L1_fusion_type": -1,
+                        "L1_workspace_size": -1,
+                        "addr_type": 0,
+                        "data_type": "float32",
+                        "dtype": "float32",
+                        "format": "NC1HWC0",
+                        "name": "Default/backbone-SegBaseModel/pretrained-Resnet50v1b/layer3-SequentialCell/5-BottleneckV1b/relu-ReLU/ReLU-op403",
+                        "ori_format": "NCHW",
+                        "ori_shape": [
+                            1,
+                            1024,
+                            64,
+                            128
+                        ],
+                        "output_index": 0,
+                        "shape": [
+                            1,
+                            64,
+                            64,
+                            128,
+                            16
+                        ],
+                        "slice_offset": [],
+                        "split_index": 0,
+                        "total_shape": [],
+                        "valid_shape": []
+                    }
+                ],
+                "pattern": "ElemWise",
+                "py_module_path": "/usr/local/Ascend/opp/op_impl/built-in/ai_core/tbe",
+                "type": "Relu",
+                "unknown_shape": false
+            },
+            {
+                "attr_desc": [
+                    1
+                ],
+                "attrs": [
+                    {
+                        "dtype": "int32",
+                        "name": "dst_type",
+                        "valid": true,
+                        "value": 1
+                    }
+                ],
+                "dynamic_compile_static": false,
+                "func_name": "cast",
+                "input_desc": [
+                    {
+                        "L1_addr_offset": 0,
+                        "L1_fusion_type": -1,
+                        "L1_workspace_size": -1,
+                        "addr_type": 0,
+                        "data_type": "float32",
+                        "dtype": "float32",
+                        "format": "NC1HWC0",
+                        "name": "Default/backbone-SegBaseModel/pretrained-Resnet50v1b/layer3-SequentialCell/5-BottleneckV1b/relu-ReLU/ReLU-op403",
+                        "ori_format": "NCHW",
+                        "ori_shape": [
+                            1,
+                            1024,
+                            64,
+                            128
+                        ],
+                        "output_index": 0,
+                        "shape": [
+                            1,
+                            64,
+                            64,
+                            128,
+                            16
+                        ],
+                        "slice_offset": [],
+                        "split_index": 0,
+                        "total_shape": [],
+                        "valid_shape": []
+                    }
+                ],
+                "int64mode": false,
+                "is_dynamic_impl": false,
+                "module_name": "impl.cast",
+                "name": "Default/backbone-SegBaseModel/pretrained-Resnet50v1b/layer4-SequentialCell/0-BottleneckV1b/conv1-Conv2dBnAct/conv-Conv2d/Cast-op1591",
+                "op_name": "te_fusion_add_relu_cast_10022567901278744074_0",
+                "ori_name": [
+                    "Default/backbone-SegBaseModel/pretrained-Resnet50v1b/layer4-SequentialCell/0-BottleneckV1b/conv1-Conv2dBnAct/conv-Conv2d/FusionOp_Add_ReLU_Cast-op1701"
+                ],
+                "output_data_desc": [
+                    {
+                        "L1_addr_offset": 0,
+                        "L1_fusion_type": -1,
+                        "L1_workspace_size": -1,
+                        "addr_type": 0,
+                        "data_type": "float16",
+                        "dtype": "float16",
+                        "format": "NC1HWC0",
+                        "ori_format": "NCHW",
+                        "ori_shape": [
+                            1,
+                            1024,
+                            64,
+                            128
+                        ],
+                        "param_type": "required",
+                        "range": [
+                            [
+                                1,
+                                1
+                            ],
+                            [
+                                64,
+                                64
+                            ],
+                            [
+                                64,
+                                64
+                            ],
+                            [
+                                128,
+                                128
+                            ],
+                            [
+                                16,
+                                16
+                            ]
+                        ],
+                        "shape": [
+                            1,
+                            64,
+                            64,
+                            128,
+                            16
+                        ],
+                        "slice_offset": [],
+                        "split_index": 0,
+                        "total_shape": [],
+                        "valid_shape": []
+                    }
+                ],
+                "output_desc": [
+                    {
+                        "L1_addr_offset": 0,
+                        "L1_fusion_type": -1,
+                        "L1_workspace_size": -1,
+                        "addr_type": 0,
+                        "data_type": "float16",
+                        "dtype": "float16",
+                        "format": "NC1HWC0",
+                        "name": "Default/backbone-SegBaseModel/pretrained-Resnet50v1b/layer4-SequentialCell/0-BottleneckV1b/conv1-Conv2dBnAct/conv-Conv2d/Cast-op1591",
+                        "ori_format": "NCHW",
+                        "ori_shape": [
+                            1,
+                            1024,
+                            64,
+                            128
+                        ],
+                        "output_index": 0,
+                        "shape": [
+                            1,
+                            64,
+                            64,
+                            128,
+                            16
+                        ],
+                        "slice_offset": [],
+                        "split_index": 0,
+                        "total_shape": [],
+                        "valid_shape": []
+                    }
+                ],
+                "pattern": "ElemWise",
+                "py_module_path": "/usr/local/Ascend/opp/op_impl/built-in/ai_core/tbe",
+                "type": "Cast",
+                "unknown_shape": false
+            }
+        ],
+        "scope_id": 37
+    },
+    "job_id": 18251,
+    "job_type": "FusionOpCompile",
+    "source_id": 0
+}

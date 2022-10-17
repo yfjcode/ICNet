@@ -1,0 +1,15 @@
+{
+    "KBHit":false,
+    "binFileName":"te_fusion_avg_pool_cast_8093425833105826285_0",
+    "binFileSuffix":".o",
+    "blockDim":32,
+    "kernelName":"te_fusion_avg_pool_cast_8093425833105826285_0__kernel0",
+    "magic":"RT_DEV_BINARY_MAGIC_ELF",
+    "opParaSize":0,
+    "parameters":[
+        0,
+        0,
+        0
+    ],
+    "sha256":"6b3a4aef6cce53839b30e0ebcfac0616583683bcfb2a8f7b426ae3117af7af61"
+}

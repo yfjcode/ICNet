@@ -1,0 +1,14 @@
+{
+    "binFileName":"relu_grad_v2_8751374572928677838_0",
+    "binFileSuffix":".o",
+    "blockDim":32,
+    "kernelName":"relu_grad_v2_8751374572928677838_0__kernel0",
+    "magic":"RT_DEV_BINARY_MAGIC_ELF",
+    "opParaSize":0,
+    "parameters":[
+        0,
+        0,
+        0
+    ],
+    "sha256":"de7f206d3027206643daf52e2460dedabea28db359468459b7fa8e923ef0687e"
+}
