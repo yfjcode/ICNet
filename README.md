@@ -1,257 +1,145 @@
-# Contents
+**ICNet****模型 自验报告**
 
-- [Contents](#contents)
-- [ICNet Description](#icnet-description)
-- [Model Architecture](#model-architecture)
-- [Dataset](#dataset)
-- [Environmental requirements](#environmental-requirements)
-- [Scription Description](#scription-description)
-    - [Script and Sample Code](#script-and-sample-code)
-    - [Script Parameters](#script-parameters)
-        - [Model](#model)
-        - [Optimizer](#optimizer)
-        - [Training](#training)
-    - [Training Process](#training-process)
-        - [Prepare Datast](#prepare-datast)
-        - [Pre-training](#pre-training)
-        - [Training](#training-1)
-        - [Training Result](#training-result)
-    - [Evaluation Process](#evaluation-process)
-        - [Evaluation](#evaluation)
-        - [Evaluation Result](#evaluation-result)
-- [Model Description](#model-description)
-    - [Performance](#performance)
-        - [Distributed Training Performance](#distributed-training-performance)
-- [Description of Random Situation](#description-of-random-situation)
-- [ModelZoo Homepage](#modelzoo-homepage)
+院校：四川大学
 
-# [ICNet Description](#Contents)
 
-ICNet(Image Cascade Network) propose a full convolution network which incorporates multi-resolution branches under proper label guidance to address the challenge of real-time semantic segmentation.
 
-[paper](https://arxiv.org/abs/1704.08545) from ECCV2018
+**1.** **模型简介**
 
-# [Model Architecture](#Contents)
+**① 模型结构（说明：简单描述，方便验收人员了解模型基本概况）**
 
-ICNet takes cascade image inputs (i.e., low-, medium- and high resolution images), adopts cascade feature fusion unit and is trained with cascade label guidance.The input image with full resolution (e.g., 1024×2048 in Cityscapes) is downsampled by factors of 2 and 4, forming cascade input to medium- and high-resolution branches.
+ICNet模型于2018年在论文《ICNet for Real-Time Semantic Segmentation on High-Resolution Images》中被提出，该模型提出是为了解决现有的方法对于像素级分割很难在较大比例上减少运算的计算量的问题，主要用于实时的语义分割任务。ICNet采用多分辨率的分支构建语义分割模型，它将图像分为高中低三层，性能大幅提升的根本原因是让低分辨的图像经过语义分割网络产生粗糙的分割结果；之后特征级联混合单元（cascade label guidance）与标签引导的级联策略（cascade label guidance strategy）将中分辨率和高分辨率的特征整合，逐步地优化之前生成的粗糙分割结果。
 
-# [Dataset](#Content)
+ 
 
-used Dataset :[Cityscape Dataset Website](https://www.cityscapes-dataset.com/) (please download 1st and 3rd zip)
+**② 数据集（说明：如需填写多个数据集地址，可在代码的 read.md 中填写获取和下载数据集的方式）**
 
-It contains 5,000 finely annotated images split into training, validation and testing sets with 2,975, 500, and 1,525 images respectively.
+Cityscapes数据集，以下是在ModelArts平台上数据集的目录，由于我们是在原本数据集有1个多G，全部拿来跑得话，很容易跑满内存，故我们就选择一个城市的一些图片完成。都只选了一张图片，但是我们实际测试过，放全部图片跑代码也是不会有任何问题和报错的：
 
-# [Environmental requirements](#Contents)
+![img](file:///C:/Users/dell/AppData/Local/Temp/msohtmlclip1/01/clip_image001.png)
 
-- Hardware :(Ascend)
-    - Prepare ascend processor to build hardware environment
-- frame:
-    - [Mindspore](https://www.mindspore.cn/install)
-- For details, please refer to the following resources:
-    - [MindSpore course](https://www.mindspore.cn/tutorials/en/master/index.html)
-    - [MindSpore Python API](https://www.mindspore.cn/docs/zh-CN/master/index.html)
+​    -训练集：1张图片
 
-# [Scription Description](#Content)
+​    -测试集： 1张图片
 
-## Script and Sample Code
+-验证集：1张图片
 
-```python
-.
-└─ICNet
-    ├── ascend310_infer
-    │   ├── build.sh
-    │   ├── CMakeLists.txt
-    │   ├── inc
-    │   │   └── utils.h
-    │   └── src
-    │       ├── main.cc
-    │       └── utils.cc
-    ├── eval.py                                    # validation
-    ├── export.py                                  # export mindir
-    ├── postprocess.py                             # 310 infer calculate accuracy
-    ├── README.md                                  # descriptions about ICNet
-    ├── Res50V1_PRE                                # scripts for pretrain
-    │   ├── scripts
-    │   │   └── run_distribute_train.sh
-    │   ├── src
-    │   │   ├── config.py
-    │   │   ├── CrossEntropySmooth.py
-    │   │   ├── dataset.py
-    │   │   ├── lr_generator.py
-    │   │   └── resnet50_v1.py
-    │   └── train.py
-    ├── scripts
-    │   ├── run_distribute_train8p.sh              # multi cards distributed training in ascend
-    │   ├── run_eval.sh                            # validation script
-    │   └── run_infer_310.sh                       # 310 infer script
-    ├── src
-    │   ├── cityscapes_mindrecord.py               # create mindrecord dataset
-    │   ├── __init__.py
-    │   ├── logger.py                              # logger
-    │   ├── losses.py                              # used losses
-    │   ├── loss.py                                # loss
-    │   ├── lr_scheduler.py                        # lr
-    │   ├── metric.py                              # metric
-    │   ├── models
-    │   │   ├── icnet_1p.py                        # net single card
-    │   │   ├── icnet_dc.py                        # net multi cards
-    │   │   ├── icnet.py                           # validation card
-    │   │   └── resnet50_v1.py                     # backbone
-    │   ├── model_utils
-    │   │   └── icnet.yaml                         # config
-    │   └── visualize.py                           # inference visualization
-    └── train.py                                   # train
-```
+ 
 
-## Script Parameters
+**2.** **自验结果**
 
-Set script parameters in src/model_utils/icnet.yaml .
+**（根据实测结果进行截图，MindSpore版本请使用当期启动项目时候最新的版本，且精度无明显错误）**
 
-### Model
+**版本：**MindSpore 1.8.0
 
-```bash
-name: "icnet"
-backbone: "resnet50v1"
-base_size: 1024    # during augmentation, shorter size will be resized between [base_size*0.5, base_size*2.0]
-crop_size: 960     # end of augmentation, crop to training
-```
+**GPU** **环境：** Nvidia CUDA10.1+GeForce RTX 1080
 
-### Optimizer
+训练结果：
 
-```bash
-init_lr: 0.02
-momentum: 0.9
-weight_decay: 0.0001
-```
+![img](file:///C:/Users/dell/AppData/Local/Temp/msohtmlclip1/01/clip_image003.jpg)
 
-### Training
+ 
 
-```bash
-train_batch_size_percard: 4
-valid_batch_size: 1
-cityscapes_root: "/data/cityscapes/" # set dataset path
-epochs: 160
-val_epoch: 1
-mindrecord_dir: ''                   # set mindrecord path
-pretrained_model_path: '/root/ResNet50V1B-150_625.ckpt' # use the latest checkpoint file after pre-training
-save_checkpoint_epochs: 5
-keep_checkpoint_max: 10
-```
+验证结果：
 
-## Training Process
+![img](file:///C:/Users/dell/AppData/Local/Temp/msohtmlclip1/01/clip_image005.jpg)
 
-### Prepare Datast
+**3.** **Notebook****执行自验截图**
 
-- Convert dataset to Mindrecord
+**（说明：无报错，且端到端可执行）**
 
-```python
-    python cityscapes_mindrecord.py [DATASET_PATH] [MINDRECORD_PATH]
-```
+ **·核心公式&讲解**
 
-- Note:
+**1.**  **CFF(cascade feature fusion)****模块**
 
-[MINDRCORD_PATH] in script should be consistent with 'mindrecord_dir' in config file.
+不同的cascade feature使用论文提出的 Cascade Feature Fusion Unit（CFF）进行融合。F1其中上采样使用双线性插值法。然后使用空洞卷积继续上采样，相比于deconvolution，这种方法只需要少量的卷积核就能获得相同的感受野。而F2则进行了一个projection conv的操作。 
 
-### Pre-training
+其中 F1和F2是两个输入特征图，尺寸分别为（C1，H1，W1）和（C2，H2，W2）；LABEL是ground-truth的标签，尺寸是（1，H2，W2）。
 
-The folder Res50V1_PRE contains the scripts for pre-training and its dataset is [image net](https://image-net.org/). More details in [GENet_Res50](https://gitee.com/mindspore/models/tree/master/research/cv/GENet_Res50)
+![IMG_256](file:///C:/Users/dell/AppData/Local/Temp/msohtmlclip1/01/clip_image007.png)
 
-- Usage:
+ 
 
-```shell
-    bash run_distribute_train.sh [RANK_TABLE_FILE] [DATASET_PATH]
-```
+**2.**  **Cascade Label Guidance****级联的标签指导**
 
-- Notes:
+为了提高F1、F2的学习能力，作者在F1、F2这里使用了cascade label guidance。使用不同尺寸的Groud-Truth去引导低、中、高分辨率学习。对结构中的每一个分支（不同大小的Input）用带有权重的softmax交叉熵损失函数算Loss，从而对每一个分支都能进行很好的训练。公式如下：
 
-The hccl.json file specified by [RANK_TABLE_FILE] is used when running distributed tasks. You can use [hccl_tools](https://gitee.com/mindspore/models/tree/master/utils/hccl_tools) to generate this file.
+![img](file:///C:/Users/dell/AppData/Local/Temp/msohtmlclip1/01/clip_image009.jpg)
 
-### Training
+**·模型图**
 
-- Train on a single card
+![1663575886933](file:///C:/Users/dell/AppData/Local/Temp/msohtmlclip1/01/clip_image011.png)
 
-```shell
-    bash scripts/run_train1p.sh [PROJECT_PATH] [DEVICE_ID]
-```
+**·训练评估逻辑讲解**
 
-- Run distributed train in ascend processor environment
+环境准备与数据读取
 
-```shell
-    bash scripts/run_distribute_train8p.sh [RANK_TABLE_FILE] [PROJECT_PATH]
-```
+本案例基于MindSpore-GPU版本实现，在GPU上完成模型训练。
 
-### Training Result
+案例实现所使用的数据:Cityscape Dataset Website。
 
-The training results will be saved in the example path, The folder name starts with "ICNet-".You can find the checkpoint file and similar results below in LOG(0-7)/log.txt.
+为了下载数据集，我们首先需要在Cityscapes数据集官网进行注册，并且最好使用edu教育邮箱进行注册，此后就可以下载数据集了，这里我们下载了两个文件：gtFine_trainvaltest.zip和leftImg8bit_trainvaltest.zip (11GB)。
 
-```bash
-# distributed training result(8p)
-epoch: 1 step: 93, loss is 0.5659234
-epoch time: 672111.671 ms, per step time: 7227.007 ms
-epoch: 2 step: 93, loss is 1.0220546
-epoch time: 66850.354 ms, per step time: 718.821 ms
-epoch: 3 step: 93, loss is 0.49694514
-epoch time: 70490.510 ms, per step time: 757.962 ms
-epoch: 4 step: 93, loss is 0.74727297
-epoch time: 73657.396 ms, per step time: 792.015 ms
-epoch: 5 step: 93, loss is 0.45953503
-epoch time: 97117.785 ms, per step time: 1044.277 ms
-```
+下载完成后，我们对数据集压缩文件进行解压，文件的目录结构如下所示。
 
-## Evaluation Process
+![img](file:///C:/Users/dell/AppData/Local/Temp/msohtmlclip1/01/clip_image012.png)
 
-### Evaluation
+由于原本数据集有1个多G，全部拿来跑得话，很容易掉卡，故我们就选择一个城市的一些图片完成。
 
-Check the checkpoint path used for evaluation before running the following command.
+首先要处理数据，生成对应的.mindrecord和.mindrecord.db文件。
 
-```shell
-    bash run_eval.sh [DATASET_PATH] [CHECKPOINT_PATH] [PROJECT_PATH] [DEVICE_ID]
-```
+![img](file:///C:/Users/dell/AppData/Local/Temp/msohtmlclip1/01/clip_image013.png)
 
-### Evaluation Result
+需要注意的是，在生成这两个文件之前，我们要建立一个文件夹，用cityscapes_mindrecord命名，放在cityscapes文件夹的同级目录下。而且要保持cityscapes_mindrecord文件夹里面为空。
 
-The results at eval/log were as follows:
+ 
 
-```bash
-Found 500 images in the folder /data/cityscapes/leftImg8bit/val
-pretrained....
-2021-06-01 19:03:54,570 semantic_segmentation INFO: Start validation, Total sample: 500
-avgmiou 0.69962835
-avg_pixacc 0.94285786
-avgtime 0.19648232793807982
-````
+此外，由于ICNet的案例实现是基于ResNet50的骨干网络进行实现的，所以在训练ICNet之前往往需要先跑一边ResNet50的代码，故本项目会先将ResNet50的模型跑好，并将其保存在对应路径之中，在进行ICNet代码编写过程中直接在src资源包中调用即可，就不用在重新训练一遍ResNet50模型了。预训练模型位置在/home/ma-user/work/ICNet/root/cacheckpt/里面，如下图所示：
 
-## 310 infer
+![img](file:///C:/Users/dell/AppData/Local/Temp/msohtmlclip1/01/clip_image014.png)
 
-```shell
-    bash run_infer_310.sh [The path of the MINDIR for 310 infer] [The path of the dataset for 310 infer]  0
-```
+模型训练部分：
 
-- Note: Before executing 310 infer, create the MINDIR/AIR model using "python export.py --ckpt-file [The path of the CKPT for exporting]".
+一些参数：
 
-# [Model Description](#Content)
+![img](file:///C:/Users/dell/AppData/Local/Temp/msohtmlclip1/01/clip_image016.jpg)
 
-## Performance
+ICNet主要结构：
 
-### Distributed Training Performance
+![img](file:///C:/Users/dell/AppData/Local/Temp/msohtmlclip1/01/clip_image017.png)
 
-|Parameter              | ICNet                                                   |
-| ------------------- | --------------------------------------------------------- |
-|resources              | Ascend 910；CPU 2.60GHz, 192core；memory：755G |
-|Upload date            |2021.6.1                    |
-|mindspore version      |mindspore1.2.0     |
-|training parameter     |epoch=160,batch_size=4   |
-|optimizer              |SGD optimizer，momentum=0.9,weight_decay=0.0001    |
-|loss function          |SoftmaxCrossEntropyLoss   |
-|training speed         | epoch time：21469.152 ms(8pcs) per step time :330.851 ms(8pcs) |
-|total time             |1h20m34s(8pcs)    |
-|Script URL             |   |
-|Random number seed     |set_seed = 1234     |
+PPM结构：
 
-# [Description of Random Situation](#Content)
+![img](file:///C:/Users/dell/AppData/Local/Temp/msohtmlclip1/01/clip_image018.png)
 
-The seed in the `create_icnet_dataset` function is set in `cityscapes_mindrecord.py`, and the random seed in `train.py` is also used for weight initialization.
+Head结构：
 
-# [ModelZoo Homepage](#Content)
+![img](file:///C:/Users/dell/AppData/Local/Temp/msohtmlclip1/01/clip_image020.jpg)
 
-Please visit the official website [homepage](https://gitee.com/mindspore/models).
+CFF结构：
+
+![img](file:///C:/Users/dell/AppData/Local/Temp/msohtmlclip1/01/clip_image022.jpg)
+
+ 
+
+自测训练结果：
+
+![img](file:///C:/Users/dell/AppData/Local/Temp/msohtmlclip1/01/clip_image023.jpg)
+
+ 
+
+模型验证部分：
+
+评价指标为:mIOU、pixAcc、average_time.
+
+自测验证结果：
+
+![img](file:///C:/Users/dell/AppData/Local/Temp/msohtmlclip1/01/clip_image024.jpg)
+
+具体代码地址在ModelArts平台已经部署，网址为：
+
+https://authoring-dev.cncentral231.xckpjs.com/87136e07-4a5f-4514-8285-82551fab3b15/lab/tree/ICNet/train.ipynb
+
+gitee网址也已经提交，网址为：
+
+https://gitee.com/yangfj/icnet_v1
