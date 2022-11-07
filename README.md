@@ -1,0 +1,2 @@
+# ICNet
+mindspore icnet model
